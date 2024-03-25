@@ -1,0 +1,58 @@
+
+<div class="container">
+    <div class="sv">
+        <h3>Số lượng phòng trọ theo phường/xã:</h3>
+        <div class="areas-motel">
+            <div class="list-area">
+                <div class="area" *ngFor="let sv of listSV">
+                    <div class="sv">
+                        <h3>{{sv.name}}</h3>
+                    </div>
+                    <div class="count">
+                        <span>{{sv.count}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="area-pie-chart">
+        <div class="area-pc-motel area-pc">
+            <h3>Số lượng phòng trọ</h3>
+            <div class="count-motel count">
+                <div class="circle-out">
+                    <div class="circle-in">
+                        <div class="number">
+                            <p>{{listMotels.length}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="area-pc-motel-active  area-pc">
+            <h3>Số lượng phòng trọ còn trống</h3>
+            <div class="count-motel-active count">
+                <div class="circle-out">
+                    <div class="circle-in">
+                        <div class="number">
+                            <p>17</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="area-pc-user area-pc">
+            <h3>Số lượng chủ trọ</h3>
+            <div class="count-landlord count">
+                <div class="circle-out">
+                    <div class="circle-in">
+                        <div class="number">
+                            <p>17</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>

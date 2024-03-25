@@ -1,0 +1,112 @@
+body{
+    background-color: #73CFC0;
+}
+.main{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    height: 450px;
+}
+.container{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    height: 450px;
+    background-color: #FFFFFF;
+    border-radius: 50px;
+    padding: 30px;
+    overflow: hidden;
+    box-shadow: 0px 0px 20px rgba(171, 170, 170,0.5),
+                0px 0px 40px rgba(171, 170, 170,0.5);
+}
+.container::after{
+    content: '';
+    position: absolute;
+    right: -40%;
+    top: -10%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background-color: #73CFC0;
+    box-shadow: -60px 5px 0px -2px #96d2c8d3,
+                -120px 5px 0px -2px #96d2c88a;
+}
+form{
+    margin-left: 70px;
+    width: 400px;
+    height: 100%;
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+
+}
+form  .area{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    
+}
+form .area h5{
+    margin: 0 20px;
+    font-size: 33px;
+    font-weight: 600;
+    box-sizing: none;
+    font-family: roboto,sans-serif;
+}
+form .area  .login{
+    color: #73CFC0;
+    border-bottom: 3px solid #73CFC0;
+}
+form .area .sing-up{
+    color: #d9dada;
+}
+form input{
+    width: 100%;
+    height: 40px;
+    margin: 20px 0px;
+    border-radius: 18px;
+    padding: 0 20px;
+    border: none;
+    background-color: #f0ededd0;
+    box-shadow: 0px 0px 20px rgba(231, 229, 229, 0.5);
+    font-size: 17px;
+}
+form input:focus{
+   outline: none
+}
+input::placeholder {
+    color: rgb(190, 188, 188);
+}
+
+ .mg-20{
+    margin-top: 50px;
+}
+form button{
+    width: 100px;
+    height: 40px;
+    border: none;
+    margin: 20px 0px;
+    background-color: #73CFC0;
+    box-shadow: 0px 0px 20px rgba(231, 229, 229, 0.5);
+    border-radius: 18px;
+    font-size: 13px;
+    color: #FFFFFF;
+}
+
+img {
+    position: absolute;
+    top: 20px;
+    right: -170px;
+}
+form button{
+    width: 120px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+
+}

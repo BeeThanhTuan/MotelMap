@@ -1,0 +1,145 @@
+.main{
+    width: 100%;
+    height: 825px;
+    display: flex;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+.main .sidebar{
+    position: relative;
+    width: 250px;
+    height: 100%;
+    padding: 5px;
+    padding-bottom: 20px;
+    background-color: #0f123f;
+    box-sizing: border-box;
+    z-index: 10;
+
+}
+.sidebar .title{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+.title i{
+    position: relative;
+    top:-4px;
+    font-size: 30px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title h4{
+    font-size: 28px;
+    font-family: roboto,sans-serif;
+}
+.sidebar .control{
+    width: 100%;
+    height: 500px;
+    box-sizing: border-box;
+    
+}
+.control ul{
+    width: 100%;
+    height: 100%;
+}
+.control ul li{
+    width: 100%;
+    height: 50px;
+    margin:20px 0 ;
+    list-style: none;
+    display: flex;
+    border-bottom: 1px solid ghostwhite;
+}
+.control ul li a:hover{
+    background-color: #FF6968;
+    border-radius: 15px;
+}
+.control ul li a{
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    padding-left: 35px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    
+}
+
+.control ul li a i{
+    font-size: 20px;
+    padding-right: 30px;
+}
+.control ul li a p{
+    font-size: 18px;
+    font-family: roboto,sans-serif;
+    font-weight: 600;
+}
+
+.sidebar .account{
+    position: absolute;
+    left: 3%;
+    bottom: 20px;
+    width: 94%;
+    height: 50px;
+}
+.sidebar .active .signout{
+    opacity: 1;
+}
+.sidebar .active .info i{
+    position: relative;
+    top: -7px;
+    transform: rotate(180deg);
+}
+.account button{
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    background-color: rgba(167, 169, 208, 0.367);
+}
+.account button p{
+    font-size: 20px;
+    font-weight: 600;
+    font-family: roboto,sans-serif;
+    text-transform: capitalize;
+}
+.account button i{
+    position: relative;
+    top: 7px;
+    font-size: 25px;
+
+}
+.account .signout{
+    position: absolute;
+    top:-110%;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(167, 169, 208, 0.367);
+    opacity: 0;
+}
+.account .signout i{
+    position: relative;
+    top: 0;
+}
+
+.main .container{
+    width:100%;
+    min-height: 100vh;
+    height: auto;
+    padding: 5px 20px 5px 20px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 10px;
+}

@@ -1,0 +1,173 @@
+<header>
+    <div class="logo">
+        <h2>Motel Map</h2>
+    </div>
+    <div class="search-area">
+        <div class="search">
+            <input type="text" placeholder="Search by address" [(ngModel)]="valueSearchInput" (ngModelChange)="searchByAddress()">
+            <div class="search-icon" appSearch>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+        </div>
+    </div>
+    <div class="area-login">
+        <a routerLink="/login">
+            <i class="fa-solid fa-user"></i>
+            <p>Login</p>
+        </a>
+    </div>
+</header>
+<div class="filter-area">
+    <div class="filter"><i class="fa-solid fa-magnifying-glass-plus"></i>Filter</div>
+    <i class="fa-solid fa-angles-right i-filter" appToggleFilter></i>
+    <div class="filter-box">
+        <div class="s-v filter">
+            <label>Phường/xã: </label>
+            <select name="phuongXa" [(ngModel)]="selectedSV">
+                <option option *ngFor="let phuongXa of listSV" [value]="phuongXa" >{{phuongXa}}</option>
+            </select>
+            <input id="checkSV" type="checkbox" (change)="onCheckboxChange('phuongXa',selectedSV, $event)">
+        </div>
+        <div class="price filter" >
+            <label>Giá: </label>
+            <div class="control">
+                <input type="range" [(ngModel)]="sliderPriceValue" min="500000" max="7000000" value="2000000" step="100000">
+                <p id="priceValue">{{sliderPriceValue.toLocaleString()}}</p>
+            </div>
+            <input id="checkPrice" type="checkbox" (change)="onCheckboxChange('price',sliderPriceValue, $event)">
+        </div>
+        <div class="distance filter" >
+            <label>Khoảng cách: </label>
+            <div class="control">
+                <input type="range" [(ngModel)]="sliderDistanceValue" min="0" max="10" value="1" step="0.1">
+                <p id="distanceValue">{{sliderDistanceValue.toLocaleString()}} k.m</p>
+            </div>
+            <input id="checkDistance" type="checkbox" (change)="onCheckboxChange('distance',sliderDistanceValue, $event)">
+        </div>
+        <div class="btn-filter">
+            <button (click)="filter()">Filter</button>
+            <button (click)="removeFilter()">Remove Filter</button>
+
+        </div>
+        
+    </div>
+</div>
+<div id="map" #map (click)="toggleInfoMotel($event)"></div>
+
+<div id="info-motel" class="info-motel" #infoMotel>
+    <div class="images">
+        <div class="img-main">
+            <img src="http://localhost:3000/resources/{{linkImages[0]}}" alt="">
+        </div>
+        <div class="img-secondary-area">
+            <div class="img-secondarys">
+                <div class="img-secondary" *ngFor="let link of linkImages.slice(1)" appZoomImage>
+                    <img src="http://localhost:3000/resources/{{link}}" alt="" id="imageSecondary">
+                </div>
+            </div>
+        </div>
+        <div class="button-area" *ngIf="linkImages.length >= 4">
+            <button type="button" class="prev" appPrev> 
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button type="button" class="next" appNext> 
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </div>
+    <div class="info-area">
+        <div class="address">
+            <div class="addr">
+                <i class="fa-solid fa-location-dot"></i>
+                <h5>{{addressMotel}} , {{svMotel}}</h5>
+            </div>
+            <p>Thành phố Quy Nhơn <span> {{distanceMotel}}km</span></p>
+        </div>
+        <div class="description">
+            <h5>Giới thiệu</h5>
+            <p>{{descriptionMotel}}</p>
+        </div>
+
+        <div class="convenient">
+            <h5>Tiện ích</h5>
+            <div class="convenient-icon-area">
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('wifi') ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-wifi" [style.color]="filterKey('wifi') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p [style.color]="filterKey('wifi') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Wifi</p>
+                </div>
+
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('giường') ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-bed" [style.color]="filterKey('giường') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p [style.color]="filterKey('giường') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Giường</p>
+                </div>
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('nấu ăn') ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-kitchen-set" [style.color]="filterKey('nấu ăn') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p [style.color]="filterKey('nấu ăn') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Nấu ăn</p>
+                </div>
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('vệ sinh riêng')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-toilet-portable" [style.color]="filterKey('vệ sinh riêng') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p [style.color]="filterKey('vệ sinh riêng') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Toilet</p>
+                </div>
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('máy nóng lạnh')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-snowflake" [style.color]="filterKey('máy nóng lạnh') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p style="width: 200%; letter-spacing: 1px;" [style.color]="filterKey('máy nóng lạnh')? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Máy nóng lạnh</p>
+                </div>
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('điều hoà')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-wind" [style.color]="filterKey('điều hoà') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p [style.color]="filterKey('điều hoà') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Điều hoà</p>
+                </div>
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('gác lỡ')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-stairs" [style.color]="filterKey('gác lỡ') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p [style.color]="filterKey('gác lỡ') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Gác lỡ</p>
+                </div>
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('tủ lạnh')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-door-closed" [style.color]="filterKey('tủ lạnh') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p style="width: 200%; letter-spacing: 1px;" [style.color]="filterKey('tủ lạnh') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Tủ lạnh</p>
+                </div>
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('máy giặt')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-inbox" [style.color]="filterKey('máy giặt') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p [style.color]="filterKey('máy giặt') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Máy giặt</p>
+                </div>
+                <div class="item-convenient">
+                    <div class="icon" [style.background]="filterKey('nhà xe') || filterKey('chỗ để xe') ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                        <i class="fa-solid fa-car" [style.color]="filterKey('nhà xe') || filterKey('chỗ để xe')  ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                    </div>
+                    <p [style.color]="filterKey('nhà xe') || filterKey('chỗ để xe')  ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Nhà xe</p>
+                </div>
+            </div>
+        </div>
+        <div class="price-sdt">
+            <h5>Giá:<span>{{priceMotel}}đ<i style="color: #444343;"> /tháng</i></span></h5>
+            <h5>Số điện thoại:<span style="color: #444343;">{{numberPhoneMotel}}</span></h5>
+        </div>
+        <button class="see-more" title="Chi tiết" type="submit" (click)="toInfoDetail(idMotel)"><i class="fa-solid fa-circle-info"></i><i class="fa-solid fa-angles-right"></i></button>
+        <div class="draw-route">
+            <button (click)="onDrawRoute()">Xem đường<i class="fa-solid fa-route"></i></button>
+            <span class="currentLocation">{{locationMotel}}</span>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- <router-outlet></router-outlet> -->

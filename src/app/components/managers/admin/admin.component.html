@@ -1,0 +1,46 @@
+<div class="main">
+    <div class="sidebar">
+        <div class="title">
+            <i class="fa-solid fa-user-gear"></i>
+            <h4>Manager</h4>
+        </div>
+        <div class="control">
+            <ul>
+                <li>                
+                    <a routerLink="/manager/admin/dashboard">
+                        <i class="fa-solid fa-gauge"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                
+                <li>
+                    <a routerLink="/manager/admin/motels">
+                        <i class="fa-solid fa-hotel"></i>
+                        <p>Motel</p>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/home" style="position: relative;">
+                        <i class="fa-solid fa-home"></i>
+                        <i class="fa-solid fa-arrow-left" style="position: absolute; top: 50%; left: 20px; font-size: 13px; transform: translateY(-50%);"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="account">
+            <button class="info" appToggleSignOut>
+                <p>Admin: Tuan</p>
+                <i class="fa-solid fa-sort-up"></i>
+            </button>
+            <button class="signout" (click)="signOut()">
+                <p>Sign out</p>
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+        </div>
+        
+    </div>
+    <div class="container">
+            <router-outlet></router-outlet>
+    </div>
+</div>

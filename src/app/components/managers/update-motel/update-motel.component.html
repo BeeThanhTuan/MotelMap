@@ -1,0 +1,186 @@
+<div class="container">
+    <form #updateMotelForm="ngForm" enctype="multipart/form-data" >
+        <div class="left">
+            <div class="info-motel">
+                <div>
+                    <label>Tên nhà trọ:</label>
+                    <input type="text" name="tenNhaTro" [(ngModel)]="formData.tenNhaTro" />
+                </div>
+
+                <div>
+                    <label>Toạ độ:</label>
+                    <input type="text" ngModel #toaDo = "ngModel" name="toaDo" (ngModelChange)="calculateDistance()"
+                    [(ngModel)]="formData.toaDo" required
+                    [style.border]="(toaDo?.value === null || toaDo?.value === undefined || toaDo?.value === '') ? '1px solid red' : ' 1px solid gray'" /> 
+                    <div class="valid-filed" *ngIf="toaDo?.errors?.['required']" >
+                        Yêu cầu nhập vào trường trên!
+                   </div>
+                </div>
+                
+
+                <div>
+                    <label>Địa chỉ:</label>
+                    <input type="text" name="diaChi"
+                    ngModel #diaChi= "ngModel" [(ngModel)]="formData.diaChi" required 
+                    [style.border]="(diaChi?.value === null || diaChi?.value === undefined || diaChi?.value === '')  ? '1px solid red' : ' 1px solid gray'" />
+                    <div class="valid-filed" *ngIf="diaChi?.errors?.['required']" >
+                        Yêu cầu nhập vào trường trên!
+                   </div>
+                </div>
+
+                <div>
+                    <label>Phường/Xã:</label>
+                    <select [(ngModel)]="formData.phuongXa" name="phuongXa" ngModel #phuongXa= "ngModel" required>      
+                        <option   option *ngFor="let phuongXa of phuongXaList" [value]="phuongXa" >{{phuongXa}}</option>
+                    </select>
+                    <div class="valid-filed" *ngIf="phuongXa?.errors?.['required']" style="left: -30px;">
+                        Yêu cầu chọn vào một trong các option trên!
+                   </div>
+                </div>
+
+                <div style="height: 80px;">
+                    <label>Mô tả:</label>
+                    <textarea name="moTa"
+                    ngModel #moTa= "ngModel" [(ngModel)]="formData.moTa" required 
+                    [style.border]=" moTa?.value === '' ? '1px solid red' : ' 1px solid gray'"></textarea>
+                    <div class="valid-filed" *ngIf="moTa?.errors?.['required']" style="top: 40px;">
+                        Yêu cầu nhập vào trường trên!
+                   </div>
+                </div>
+                
+
+                <div>
+                    <label>Diện tích:</label>
+                    <input type="number" name="dienTich"
+                     ngModel #dienTich= "ngModel" 
+                    [(ngModel)]="formData.dienTich" required 
+                    [style.border]="(dienTich?.value === null || dienTich?.value === undefined || dienTich?.value === '')  ? '1px solid red' : ' 1px solid gray'"/>
+                    <div class="valid-filed" *ngIf="dienTich?.errors?.['required']" >
+                        Yêu cầu nhập vào trường trên!
+                   </div>
+                </div>
+
+                <div>
+                    <label>Giá thuê:</label>
+                    <input type="number" name="giaThue"
+                    ngModel #giaThue= "ngModel" 
+                     [(ngModel)]="formData.giaThue" required 
+                     [style.border]="(giaThue?.value === null || giaThue?.value === undefined || giaThue?.value === '')  ? '1px solid red' : ' 1px solid gray'"/>
+                     <div class="valid-filed" *ngIf="giaThue?.errors?.['required']" >
+                        Yêu cầu nhập vào trường trên!
+                   </div>
+                </div>
+
+                <div>
+                    <label>Giá điện:</label>
+                    <input type="number" name="giaDien" 
+                    ngModel #giaDien= "ngModel" 
+                    [(ngModel)]="formData.giaDien" required
+                    [style.border]="(giaDien?.value === null || giaDien?.value === undefined || giaDien?.value === '')  ? '1px solid red' : ' 1px solid gray'" />
+                    <div class="valid-filed" *ngIf="giaDien?.errors?.['required']" >
+                        Yêu cầu nhập vào trường trên!
+                   </div>
+                </div>
+
+
+                <div>
+                    <label>Giá nước:</label>
+                    <input type="number" name="giaNuoc"
+                    ngModel #giaNuoc= "ngModel" 
+                    [(ngModel)]="formData.giaNuoc" required
+                    [style.border]="(giaNuoc?.value === null || giaNuoc?.value === undefined || giaNuoc?.value === '')  ? '1px solid red' : ' 1px solid gray'" />
+                    <div class="valid-filed" *ngIf="giaNuoc?.errors?.['required']" >
+                        Yêu cầu nhập vào trường trên!
+                   </div>
+                </div>
+
+                <div>
+                    <label>Giá wifi:</label>
+                    <input type="number" name="giaWifi" [(ngModel)]="formData.giaWifi" />
+                    
+                </div>
+
+                <div>
+                    <label>Số lượng phòng:</label>
+                    <input type="text" name="soLuongPhong" [(ngModel)]="formData.soLuongPhong" />
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <div class="info-landlord">
+                <div>
+                    <label>Tên chủ trọ:</label>
+                    <input type="text" name="tenChuTro"
+                    ngModel #tenChuTro= "ngModel"
+                    [(ngModel)]="formData.tenChuTro" required
+                    [style.border]="(tenChuTro?.value === null || tenChuTro?.value === undefined || tenChuTro?.value === '')  ? '1px solid red' : ' 1px solid gray'" />
+                    <div class="valid-filed" *ngIf="tenChuTro?.errors?.['required']" >
+                        Yêu cầu nhập vào trường trên!
+                   </div>
+                </div>
+
+                <div>
+                    <label>Địa chỉ chủ trọ:</label>
+                    <input type="text" name="diaChiChuTro" [(ngModel)]="formData.diaChiChuTro" />
+                </div>
+
+                <div>
+                    <label>Số điện thoại:</label>
+                    <input type="tel" name="soDienThoai"
+                    maxlength="10"
+                    ngModel #soDienThoai= "ngModel"
+                     [(ngModel)]="formData.soDienThoai" required
+                     [style.border]="(soDienThoai?.value === null || soDienThoai?.value === undefined || soDienThoai?.value === '')  ? '1px solid red' : ' 1px solid gray'" />
+                     <div class="valid-filed" *ngIf="soDienThoai?.errors?.['required'] " >
+                         Yêu cầu nhập vào trường trên!
+                    </div>
+
+                </div>
+            </div>
+            <div class="convenient">
+                <div class="cv">
+                    <label>Tiện ích</label>
+                    <textarea type="text" name="convenient" 
+                    ngModel #convenient= "ngModel"
+                    required
+                    [(ngModel)]="formData.convenient"
+                    [style.border]="(convenient?.value === null || convenient?.value === undefined || convenient?.value === '')  ? '1px solid red' : ' 1px solid gray'"></textarea>
+                    <div class="valid-filed" *ngIf="convenient?.errors?.['required']" style="top: 65px; left: 180px;">
+                        Yêu cầu chọn vào các option bên dưới hoặc điền vào!
+                   </div>
+                </div>
+
+                <div class="tien-ich" *ngFor="let convenient of convenientOptions; let i = index">
+                    <input class="option" type="checkbox" [name]="'tienIch' + i" [value]="convenient" (change)="onChangeCheckbox($event, convenient)" />
+                    <span>{{ convenient }}</span>
+                </div>
+            </div>
+
+
+
+            <div class="resources" style="margin-left: 20px;">
+                <div class="images" style="position: relative;">
+                    <label>Chọn hình ảnh</label>
+                    <input type="file" name="images" (change)="onFileSelectedImages($event)" multiple required/>
+                    <div class="valid-filed" *ngIf="selectedFileImages.length===0"  style="top: 55px; left: 0; width: 250px;">
+                        Yêu cầu chọn vào ít nhất một file ảnh!
+                   </div>
+                </div>
+
+                <div class="video">
+                    <label>Chọn video</label>
+                    <input type="file" name="video" (change)="onFileSelectedVideo($event)" />
+                </div>
+            </div>
+
+            <button   class="add update" type="submit"  (click)="updateMotel(id)">Update Motel</button>
+        </div>
+
+
+    </form>
+
+</div>

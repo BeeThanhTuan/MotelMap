@@ -1,0 +1,23 @@
+<div class="main">
+  <div class="container">
+    <form #formStock="ngForm" (ngSubmit)="login()">
+      <div class="area">
+        <h5 class="login" >Login</h5>
+      </div>
+      <input class="mg-20" type="text"
+        name="userName"
+        placeholder="Enter user name"
+        autocomplete="off"
+        [(ngModel)] = "credentials.username">
+      <input type="password"
+       name="password"
+       placeholder="Enter password"
+        required
+        [(ngModel)] = "credentials.password">
+      <button type="submit" >Login</button>
+    </form>
+    
+  </div>
+  <img src="http://localhost:4200/assets/images/tree.png" alt="">
+</div>
+

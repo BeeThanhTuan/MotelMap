@@ -1,0 +1,301 @@
+body {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    height: fit-content;
+    box-sizing: border-box;
+    overflow: none;
+}
+.info-detail-motel{
+    /* position: absolute;
+    top:0;
+    left: 0; */
+    min-width: 1366px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    z-index: 150;
+}
+.info-motel{
+    width: 85%;
+    min-height: 150px;
+    height: auto;
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.info-motel  .info-address{
+    width: 70%;
+    min-height: 100px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.info-address h1{
+    font-size: 26px;
+    font-weight: 700;
+    font-family: roboto,sans-serif;
+    color: #2d4271;
+    line-height: 32px;
+}
+.info-motel .info-price{
+    height: 150px;
+    padding: 0 20px 0 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info-price span{
+    font-size: 30px;
+    font-weight: 700;
+    color: #fd5056;
+    line-height: 28px;
+}
+.info-price span i{
+    font-style: italic;
+    font-size: 20px;
+    color: #505153;
+}
+
+.resources{
+    width: 100%;
+    height: 100%;
+    min-width: 530px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.resources .images{
+    width: 85%;
+    height: 536px;
+    border-radius: 18px;
+}
+.resources .images .list-image{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list-image .first-image{
+    width: 50%;
+    height: 100%;
+    padding-right: 20px;
+}
+.first-image .image{
+    width: 100%;
+    height: 100%;
+}
+.first-image .image img{
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    object-fit: cover;
+}
+.list-image .video-motel{
+    width: 50%;
+    height: 100%;
+    padding-right: 10px;
+}
+.list-image .video-motel video{
+    width: 100%;
+    height: 100%;
+}
+.video-motel video source{
+    width: 100%;
+    height: 100%;
+}
+.list-image .image-other{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+.image-other .list-image-other{
+    min-width: 100%;
+    width: auto;
+    height: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.list-image-other .list{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y:hidden;
+    gap: 20px;
+    scroll-behavior: smooth;
+}
+
+
+.list.image {
+    width: 300px;
+    height: 100%;
+    margin-right: 30px;
+    border-radius: 18px;
+
+}
+.list .image img{
+    width: 330px;
+    height: 98%;
+    border-radius: 18px;
+    object-fit: cover;
+}
+.image-other .last-image{
+    width: 100%;
+    height: 55%;
+    padding-top: 10px;
+}
+.last-image .image{
+    width: 100%;
+    height: 100%;
+}
+.image img{
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    object-fit: cover;
+}
+.image-other .video-motel{
+    width: 100%;
+    height: 55%;
+    padding-top: 10px;
+}
+.video-motel video{
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    object-fit: fill;
+    border-radius: 18px;
+}
+
+
+.info-detail{
+    margin-top: 20px;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+}
+.info-detail .description{
+    width: 45%;
+    padding: 10px 20px;
+    margin-right: 30px;
+    border: 1px solid rgb(75, 124, 208);
+    background-color: #f9f9f9a9;
+
+}
+.description .desc{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.info-detail .info-other{
+    width: 55%;
+    display: block;
+}
+.info-other .convenient{
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f9f9f9a9;
+    border: 1px solid rgb(75, 124, 208);
+
+}
+.info-other .convenient .desc{
+    width: 100%;
+
+}
+
+.desc h3, .convenient-desc h3, .info-landlords h3{
+    font-size: 27px ;
+    color: #2d4271;
+}
+
+.desc p , .convenient-desc  p, .info-landlords p{
+    margin-top: 10px;
+    font-size: 19px ;
+    color: #2d4271;
+    font-family: roboto,sans-serif;
+
+}
+b{
+    font-family: 600;
+    color: #282f3dc5;
+    font-family: roboto,sans-serif;
+}
+
+.info-other .convenient .list-convenient{
+    padding-top: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 10px;
+}
+.list-convenient .item-convenient{
+    width: 60px;
+    height: 60px;
+    margin: 5px 10px;
+    padding-top: 5px;
+    /* background-color: rgba(36, 165, 204,0.1); */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.item-convenient .icon{
+    width: 60%;
+    height: 70%; 
+    padding: 5px;
+    border-radius: 5px;
+    box-sizing: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  rgba(208, 210, 211, 0.323);
+}
+.item-convenient .icon i{
+    font-size: 25px;
+    color:  rgba(208, 210, 211, 0.323);
+
+
+}
+.item-convenient p{
+    margin-top: 5px;
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    font-family: roboto,sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: rgba(208, 210, 211, 0.4);
+}
+
+ .info-landlords{
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f9f9f9a9;
+    border: 1px solid rgb(75, 124, 208);
+}
+
+::-webkit-scrollbar{
+    height: 10px;
+}
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track{
+    background-color: #acaec8;
+    box-shadow: inset 0 0 6px  #0000004d;
+}
+::-webkit-scrollbar-track-piece{
+    background-color:white;
+}

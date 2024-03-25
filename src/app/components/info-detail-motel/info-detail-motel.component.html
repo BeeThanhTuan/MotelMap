@@ -1,0 +1,166 @@
+
+<div class="info-detail-motel">
+    <div class="info-motel">
+        <div class="info-address">
+            <h1 *ngIf="motelDetail.TenNhaTro !== '' ">Tên nhà trọ: {{motelDetail.TenNhaTro}}</h1>
+            <h1>Địa chỉ nhà trọ: {{motelDetail.DiaChi}}, {{motelDetail.PhuongXa}}</h1>
+        </div>
+        <div class="info-price">
+            <span>{{motelDetail.GiaThue.toLocaleString()}}đ<i>/tháng</i></span>
+        </div>
+    </div>
+    <div class="resources" *ngIf="isExistVideo() === false">            
+        <div class="images">
+            <div class="list-image">
+                <div class="first-image">
+                    <div class="image" >
+                        <img src="http://localhost:3000/resources/{{ listImages[0] }}" alt="">
+                    </div>
+                </div>
+                <div class="image-other">
+                    <div class="list-image-other">
+                        <div class="list" >
+                            <div class="image"  *ngFor="let link of listImages.slice(1, -1)">
+                                <img src="http://localhost:3000/resources/{{ link }}" alt="">
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="last-image">
+                        <div class="image">
+                            <img src="http://localhost:3000/resources/{{ listImages[listImages.length -1] }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <div class="resources" *ngIf="isExistVideo() === true">
+        <div class="images">
+            <div class="list-image">
+                <div class="first-image">
+                    <div class="image">
+                        <img src="http://localhost:3000/resources/{{ listImages[0] }}" alt="">
+                    </div>
+                </div>
+                <div class="image-other">
+                    <div class="list-image-other">
+                        <div class="list">
+                            <div class="image"  *ngFor="let link of listImages.slice(1)">
+                                <img src="http://localhost:3000/resources/{{ link }}" alt="">
+                            </div>         
+                        </div>
+                    </div>
+                    <div class="video-motel">
+                        <video controls autoplay loop>
+                            <source src="http://localhost:3000/resources/{{listVideos[0]}}">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="info-detail">
+        <div class="description">
+            <div class="desc">
+                <h3>Thông tin nhà trọ:</h3>
+                <p>Mô tả: <b>{{motelDetail.MoTa}}</b></p>
+                <p>Diện tích phòng: <b>{{motelDetail.DienTich}} m²</b></p>
+                <p>Số lượng phòng: <b>{{motelDetail.SoLuong}}</b></p>
+                <p>Tiền điện: <b>{{motelDetail.GiaDien.toLocaleString()}}/kwh</b></p>
+                <p>Tiền nước: <b>{{motelDetail.GiaNuoc.toLocaleString()}}/m³</b></p>
+                <p>Khoảng cách: <b>{{motelDetail.KhoangCach}} km</b></p>
+                <p *ngIf="motelDetail.GiaWifi">Tiền wifi: <b>{{motelDetail.GiaWifi.toLocaleString()}}/người</b></p>
+            </div>
+        </div>
+        <div class="info-other">
+            <div class="convenient">
+                <div class="convenient-desc">
+                    <h3>Tiện nghi:</h3>
+                    <p>
+                        <b>{{motelDetail.TienNghi}}</b>
+                    </p>
+                </div>
+                <div class="list-convenient">
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('wifi') ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-wifi" [style.color]="filterKey('wifi') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p [style.color]="filterKey('wifi') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Wifi</p>
+                    </div>
+
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('giường') ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-bed"[style.color]="filterKey('giường') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p [style.color]="filterKey('giường') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Giường</p>
+                    </div>
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('nấu ăn') ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-kitchen-set" [style.color]="filterKey('nấu ăn') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p [style.color]="filterKey('nấu ăn') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Nấu ăn</p>
+                    </div>
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('vệ sinh riêng')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-toilet-portable" [style.color]="filterKey('vệ sinh riêng') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p [style.color]="filterKey('vệ sinh riêng') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Toilet</p>
+                    </div>
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('máy nóng lạnh')   ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-snowflake" [style.color]="filterKey('máy nóng lạnh') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p style="width: 200%; letter-spacing: 1px;" [style.color]="filterKey('máy nóng lạnh')? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Máy nóng lạnh</p>
+                    </div>
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('điều hoà')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-wind" [style.color]="filterKey('điều hoà') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p [style.color]="filterKey('điều hoà') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Điều hoà</p>
+                    </div>
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('gác lỡ')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-stairs" [style.color]="filterKey('gác lỡ') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p [style.color]="filterKey('gác lỡ') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Gác lỡ</p>
+                    </div>
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('tủ lạnh')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-door-closed" [style.color]="filterKey('tủ lạnh') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p style="width: 200%; letter-spacing: 1px;" [style.color]="filterKey('tủ lạnh') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Tủ lạnh</p>
+                    </div>
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('máy giặt')  ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-inbox" [style.color]="filterKey('máy giặt') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p [style.color]="filterKey('máy giặt') ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Máy giặt</p>
+                    </div>
+                    <div class="item-convenient">
+                        <div class="icon" [style.background]="filterKey('nhà xe') || filterKey('chỗ để xe') ? ' rgba(36, 165, 204,0.2) ' : 'rgba(208, 210, 211, 0.323)' ">
+                            <i class="fa-solid fa-car" [style.color]="filterKey('nhà xe') || filterKey('chỗ để xe')  ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.323)' "></i>
+                        </div>
+                        <p [style.color]="filterKey('nhà xe') || filterKey('chỗ để xe')  ? 'rgb(2, 149, 247) ' : 'rgba(208, 210, 211, 0.4)' ">Nhà xe</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="info-landlords">
+                <h3>Thông tin chủ trọ:</h3>
+                <p>Tên chủ trọ: <b>{{motelDetail.ChuNhaTro.TenChuTro}}</b></p>
+                <p>Địa chỉ liên lạc: <b>{{motelDetail.ChuNhaTro.DiaChi}}</b></p>
+                <p>Số điện thoại: <b>{{motelDetail.ChuNhaTro.SDT}}</b></p>
+
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 50px; width: 100%;">
+    </div>
+</div>

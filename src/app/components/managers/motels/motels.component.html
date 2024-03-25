@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="header">
+        <div class="search-area">
+            <input type="text" placeholder="Search..." 
+            id="search-text" aria-describedby="search-text"
+             [(ngModel)]="searchText" autofocus>
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <button (click)="redirectToAddMotel()" class="add"><i class="fa-solid fa-circle-plus"></i>Add Motel</button>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên nhà trọ</th>
+                    <th>Địa chỉ</th>
+                    <th>Hình ảnh</th>
+                    <th>Khoảng Cách</th>
+                    <th>Phường/Xã</th>
+                    <th>Mô tả</th>
+                    <th>Tiện ích</th>
+                    <th>Diện tích</th>
+                    <th>Giá thuê</th>
+                    <th>Giá điện</th>
+                    <th>Giá nước</th>
+                    <th>Giá wifi</th>
+                    <th>Số lượng phòng</th>
+                    <th>Video</th>
+                    <th>Tên chủ trọ</th>
+                    <th>Địa chỉ chủ trọ</th>
+                    <th>Số điện thoại</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let motel of listMotels | searchFilter: searchText | paginate : { itemsPerPage: 3, currentPage: page },let i = index">
+                    <td>{{motel._id}}</td>
+                    <td>{{motel.TenNhaTro}}</td>
+                    <td>{{motel.DiaChi}}</td>
+                    <td >
+                        <div >
+                            <img style="width: 40px; height: 40px; margin: 5px;" *ngFor="let image of motel.HinhAnh" src="http://localhost:3000/resources/{{image.Anh}}" alt="Motel Image">
+                        </div>
+                    </td>
+                    <td>{{motel.KhoangCach}} k.m</td>
+                    <td>{{motel.PhuongXa}}</td>
+                    <td>{{motel.MoTa}}</td>
+                    <td>{{motel.TienNghi}}</td>
+                    <td>{{motel.DienTich}}</td>
+                    <td>{{motel.GiaThue}}</td>
+                    <td>{{motel.GiaDien}}</td>
+                    <td>{{motel.GiaNuoc}}</td>
+                    <td>{{motel.GiaWifi}}</td>
+                    <td>{{motel.SoLuong}}</td>
+                    <td>{{motel.Video[0].Video}}</td>
+                    <td>{{motel.ChuNhaTro.TenChuTro}}</td>
+                    <td>{{motel.ChuNhaTro.DiaChi}}</td>
+                    <td>{{motel.ChuNhaTro.SDT}}</td>
+                    <td class="control-area">
+                        <div class="control">
+                            <i class="fa-solid fa-pen" (click)="redirectToUpdateMotel(motel._id,i)"></i>
+                            <i class="fa-solid fa-trash-can" (click)="onDeleteMotel(motel._id, i)"></i>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="page">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>
