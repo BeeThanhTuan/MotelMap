@@ -4,7 +4,7 @@ import { MotelService } from 'src/app/services/motel.service';
 @Component({
   selector: 'app-info-detail-motel',
   templateUrl: './info-detail-motel.component.html',
-  styleUrls: ['./info-detail-motel.component.css','./info-detail-motel.component_1.css'],
+  styleUrls: ['./info-detail-motel.component.css'],
 })
 export class InfoDetailMotelComponent {
   motelDetail: any;

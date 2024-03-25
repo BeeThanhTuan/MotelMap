@@ -10,7 +10,7 @@ import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css','./home.component_1.css','./home.component_2.css'],
+  styleUrls: ['./home.component.css',],
 })
 export class HomeComponent {
   map!: L.Map;
