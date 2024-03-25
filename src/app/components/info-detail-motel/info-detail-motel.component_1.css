@@ -1,0 +1,122 @@
+
+.info-detail{
+    margin-top: 20px;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+}
+.info-detail .description{
+    width: 45%;
+    padding: 10px 20px;
+    margin-right: 30px;
+    border: 1px solid rgb(75, 124, 208);
+    background-color: #f9f9f9a9;
+
+}
+.description .desc{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.info-detail .info-other{
+    width: 55%;
+    display: block;
+}
+.info-other .convenient{
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f9f9f9a9;
+    border: 1px solid rgb(75, 124, 208);
+
+}
+.info-other .convenient .desc{
+    width: 100%;
+
+}
+
+.desc h3, .convenient-desc h3, .info-landlords h3{
+    font-size: 27px ;
+    color: #2d4271;
+}
+
+.desc p , .convenient-desc  p, .info-landlords p{
+    margin-top: 10px;
+    font-size: 19px ;
+    color: #2d4271;
+    font-family: roboto,sans-serif;
+
+}
+b{
+    font-family: 600;
+    color: #282f3dc5;
+    font-family: roboto,sans-serif;
+}
+
+.info-other .convenient .list-convenient{
+    padding-top: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 10px;
+}
+.list-convenient .item-convenient{
+    width: 60px;
+    height: 60px;
+    margin: 5px 10px;
+    padding-top: 5px;
+    /* background-color: rgba(36, 165, 204,0.1); */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.item-convenient .icon{
+    width: 60%;
+    height: 70%; 
+    padding: 5px;
+    border-radius: 5px;
+    box-sizing: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  rgba(208, 210, 211, 0.323);
+}
+.item-convenient .icon i{
+    font-size: 25px;
+    color:  rgba(208, 210, 211, 0.323);
+
+
+}
+.item-convenient p{
+    margin-top: 5px;
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    font-family: roboto,sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: rgba(208, 210, 211, 0.4);
+}
+
+ .info-landlords{
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #f9f9f9a9;
+    border: 1px solid rgb(75, 124, 208);
+}
+
+::-webkit-scrollbar{
+    height: 10px;
+}
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track{
+    background-color: #acaec8;
+    box-shadow: inset 0 0 6px  #0000004d;
+}
+::-webkit-scrollbar-track-piece{
+    background-color:white;
+}
